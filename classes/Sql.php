@@ -5,16 +5,16 @@ Class Sql extends PDO {
 	public function __construct(){
 		$this->conn = new PDO("mysql:host=localhost;dbname=dbphp7", "root", "");
 	}
+	//Associar apenas um parametro da query.
+	private function setParam($statemant, $key, $value){
+		$statemant->bindParam($key, $value);
+	}
 	//Associar parametros da query
 	private function setParams($statemant, $parameters = array()){
 		foreach ($parameters as $key => $value) {
 			//Parametros da query.
-			$this->setParam($key, $value);
+			$this->setParam($statemant, $key, $value);
 		}
-	}
-	//Associar apenas um parametro da query.
-	private function setParam($statemant, $key, $value){
-		$statemant->bindParam($key, $value);
 	}
 	//Execução de comandos para obter resultado do BD.
 	public function query($rawQuery, $params = array()){
