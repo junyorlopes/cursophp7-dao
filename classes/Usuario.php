@@ -29,6 +29,32 @@ class Usuario {
 	public function setDtCadastro($value){
 		$this->dtcadastro = $value;	
 	}
+	public static function getList(){
+		$sql = new Sql();
+		return $sql->select("SELECT * FROM tb_usuarios ORDER BY idusuario");
+	}
+	public static function search($login){
+		$sql = new Sql();
+		return $sql->select("SELECT * FROM tb_usuarios WHERE deslogin LIKE :SEARCH ORDER BY deslogin", array(
+			':SEARCH'=>"%" . $login . "%"));
+	}
+	public function login($login, $senha){
+		$sql = new Sql();
+		$results = $sql->select("SELECT * FROM tb_usuarios WHERE deslogin = :SEARCH AND dessenha = :PASS", array(
+			':SEARCH'=>$login, 
+			':PASS'=>$senha
+		));
+		if(count($results) > 0){
+			$row = $results[0];
+			$this->setIdUsuario($row['idusuario']);
+			$this->setDesLogin($row['deslogin']);
+			$this->setDesSenha($row['dessenha']);
+			$this->setDtCadastro(new DateTime($row['dtcadastro']));
+		}
+		else{
+			echo "Login ou senha inválidos";
+		}
+	}
 	public function loadById($id){
 		$sql = new Sql();
 		$results = $sql->select("SELECT * FROM tb_usuarios WHERE idusuario = :ID", array(

@@ -1,13 +1,22 @@
 <?php
 //Inclusão do arquivo que faz a verificação de classes existentes.
 require_once("config.php");
-//Instancia da classe Sql que vem do config.php.
-//$sql = new Sql();
-//realizando SELECT no banco
-//$usuarios = $sql->select("SELECT * FROM tb_usuarios");
-//exibindo usuarios do banco
-//$sql->exibir($usuarios);
+
+//SELECT BY ID
 $usuario = new Usuario();
-$usuario->loadById(1);
-echo $usuario;
+$usuario->loadById(5);
+echo "<b>Consultar usuário por ID:</b><br>" . $usuario;
+
+//LIST
+$listar = new Usuario();
+$lista = Usuario::getList();
+echo "<br><b>Lista de usuários:</b><br>" . json_encode($lista);
+
+$busca = Usuario::search("ju");
+echo "<br><b>Busca de usuário:</b><br>" . json_encode($busca);
+
+$listar->login("metsa", "bayuin");
+echo "<br><b>Autenticado:</b><br>" . $listar;
+
+//INSERT
 ?>
