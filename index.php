@@ -6,13 +6,13 @@ require_once("config.php");
 /*$usuario = new Usuario();
 $usuario->loadById(5);
 echo "<b>Consultar usuário por ID:</b><br>" . $usuario;
-*/
+
 //LIST
 $listar = new Usuario();
-$lista = Usuario::getList("dessenha");
+$lista = Usuario::getList();
 echo "<br><b>Lista de usuários:</b><br>" . json_encode($lista);
-
-/*$busca = Usuario::search("ju");
+*//*
+$busca = Usuario::search("ju");
 echo "<br><b>Busca de usuário:</b><br>" . json_encode($busca);
 
 $listar->login("metsa", "bayuin");
@@ -28,4 +28,10 @@ echo "<br><b>Novo usuário:</b><br>" . $inserir;*/
 $alterar->loadById(8);
 $alterar->update("zero", "122");
 echo $alterar;*/
+
+//DELETE
+$delete = new Usuario();
+$delete->loadById(8);
+$delete->delete();
+echo $delete;
 ?>

@@ -63,12 +63,16 @@ class Usuario {
 			':PASSWORD'=>$this->getDesSenha()
 		));
 	}
-	//Busca todos usuarios
-	public static function getList($order_by){
+	public function delete(){
 		$sql = new Sql();
-		return $sql->select("CALL sp_usuarios_select(:ORDER_BY)", array(
-			':ORDER_BY'=>$order_by
+		$results = $sql->select("CALL sp_usuarios_delete(:ID)",array(
+			':ID'=>$this->getIdUsuario()
 		));
+	}
+	//Busca todos usuarios
+	public static function getList(){
+		$sql = new Sql();
+		return $sql->select("CALL sp_usuarios_select");
 	}
 	//Busca pelo login do usuário
 	public static function search($login){
