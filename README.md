@@ -1,5 +1,5 @@
 # Diretório DAO
-Arquivos e diretório referente as funções DAO de um sistema.
+Arquivos e diretório referente as funções DAO de um sistema orientado a objetos.
 # Contato:
 
 Linkedin: https://www.linkedin.com/in/junyor-lopes-190a20145/
